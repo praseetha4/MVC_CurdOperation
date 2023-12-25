@@ -77,22 +77,21 @@ namespace MVC_CurdOperation.Controllers
         [HttpPost]
         public ActionResult Delete(Employee emp)
         {
-            if(ModelState.IsValid==true)
-            {
+            
                 db.Entry(emp).State = EntityState.Deleted;
                 int a = db.SaveChanges();
                 if (a > 0)
                 {
                     TempData["Deletemessage"] = "<script>alert('Data Deleted Successfully !!')</script>";
-                    return RedirectToAction("Index");
+                    
                 }
                 else
                 {
                     TempData["Deletemessage"] = "<script>alert('Try Again !!')</script>";
                 }
-            }
             
-            return View();
+            return RedirectToAction("Index");
+            
         }
         public ActionResult Details(int id)
         {
